@@ -12,6 +12,7 @@ library(ggplot2)
 library(fastDummies)
 #install.packages("patchwork")
 library(patchwork)
+
 ```
 
 
@@ -81,52 +82,52 @@ graph.attack.by.filter <- function(fill.choice){
   df.unk <- df.clean %>% as_tibble() %>% 
   mutate(Unknown = as.factor(if_else(Unknown == 1, "True", "False")))
 
-unk.graph <- ggplot(data = df.unk, aes(Unknown == "True", fill = fill.choice))+geom_bar() + ylim(0, 250) +theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Unknown")
+unk.graph <- ggplot(data = df.unk, aes(Unknown == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50) +theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Unknown")
 ##############################################################
 df.hack <- df.clean %>% as_tibble() %>% 
   mutate(Hack = as.factor(if_else(Hack == 1, "True", "False")))
 
-hack.graph <- ggplot(data = df.hack, aes(Hack == "True", fill = fill.choice))+geom_bar() + ylim(0, 250)+theme( axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Hack")
+hack.graph <- ggplot(data = df.hack, aes(Hack == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme( axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Hack")
 ###############################################################
 df.data <- df.clean %>% as_tibble() %>% 
   mutate(Data_Breach = as.factor(if_else(Data_Breach == 1, "True", "False")))
 
-data.graph <- ggplot(data = df.data, aes(Data_Breach == "True", fill = fill.choice))+geom_bar() + ylim(0, 250)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank())+ xlab("Data Breach")
+data.graph <- ggplot(data = df.data, aes(Data_Breach == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank())+ xlab("Data Breach")
 ################################################################
 df.ran <- df.clean %>% as_tibble() %>% 
   mutate(Ransomware = as.factor(if_else(Ransomware == 1, "True", "False")))
 
-ran.graph <- ggplot(data = df.ran, aes(Ransomware == "True", fill = fill.choice))+geom_bar() + ylim(0, 250)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank()) + xlab("Ransomware")
+ran.graph <- ggplot(data = df.ran, aes(Ransomware == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank()) + xlab("Ransomware")
 ################################################################
 df.phish <- df.clean %>% as_tibble() %>% 
   mutate(Phishing = as.factor(if_else(Phishing == 1, "True", "False")))
 
-phish.graph <- ggplot(data = df.phish, aes(Phishing == "True", fill = fill.choice))+geom_bar() + ylim(0, 250)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Phishing") 
+phish.graph <- ggplot(data = df.phish, aes(Phishing == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Phishing") 
 ################################################################
 df.tdos <- df.clean %>% as_tibble() %>% 
   mutate(TDoS = as.factor(if_else(TDoS == 1, "True", "False")))
 
-tdos.graph <- ggplot(data = df.tdos, aes(TDoS == "True", fill = fill.choice))+geom_bar() + ylim(0, 250)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("TDoS")
+tdos.graph <- ggplot(data = df.tdos, aes(TDoS == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("TDoS")
 ################################################################
 df.mal <- df.clean %>% as_tibble() %>% 
   mutate(Malware = as.factor(if_else(Malware == 1, "True", "False")))
 
-mal.graph <- ggplot(data = df.mal, aes(Malware == "True", fill = fill.choice))+geom_bar() + ylim(0, 250)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank()) + xlab("Malware")
+mal.graph <- ggplot(data = df.mal, aes(Malware == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank()) + xlab("Malware")
 #################################################################
 df.ddos <- df.clean %>% as_tibble() %>% 
   mutate(DDoS = as.factor(if_else(DDoS == 1, "True", "False")))
 
-ddos.graph <- ggplot(data = df.ddos, aes(DDoS == "True", fill = fill.choice))+geom_bar() + ylim(0, 250)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("DDoS")
+ddos.graph <- ggplot(data = df.ddos, aes(DDoS == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("DDoS")
 ################################################################
 df.other <- df.clean %>% as_tibble() %>% 
   mutate(Other = as.factor(if_else(Other == 1, "True", "False")))
 
-other.graph <- ggplot(data = df.other, aes(Other == "True", fill = fill.choice))+geom_bar() + ylim(0, 250)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())+ xlab("Other") 
+other.graph <- ggplot(data = df.other, aes(Other == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())+ xlab("Other") 
 ################################################################
 df.serv <- df.clean %>% as_tibble() %>% 
   mutate(Server_Shutdown = as.factor(if_else(Server_Shutdown == 1, "True", "False")))
 
-serv.graph <- ggplot(data = df.serv, aes(Server_Shutdown == "True", fill = fill.choice))+geom_bar() + ylim(0, 250)+theme(axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())  + xlab("Server_Shutdown")
+serv.graph <- ggplot(data = df.serv, aes(Server_Shutdown == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())  + xlab("Server_Shutdown")
 ################################################################
 
 
@@ -137,10 +138,10 @@ serv.graph <- ggplot(data = df.serv, aes(Server_Shutdown == "True", fill = fill.
   scale_x_discrete(limit = c(TRUE)))
   
 }
-
 ```
 
 ```{r}
+
 graph.attack.by.filter(df.clean$year)
 graph.attack.by.filter(df.clean$type)
 graph.attack.by.filter((df.clean$website_quality))
@@ -149,13 +150,11 @@ graph.attack.by.filter((df.clean$website_quality))
 
 ```{r}
 year.trend <-function(attack.type, color.choice){
-  year.list <- c("2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021")
-  df.tmp <- data.frame(matrix(ncol = 9, nrow = 1))
+  year.list <- c("2016", "2017", "2018", "2019", "2020", "2021")
+  df.tmp <- data.frame(matrix(ncol = 6, nrow = 1))
   colnames(df.tmp) <- year.list
   
-  df.tmp[1, "2013"] <- sum((df.clean[which(df.clean$year == "2013"), attack.type]))
-  df.tmp[1, "2014"] <- sum((df.clean[which(df.clean$year == "2014"), attack.type]))
-  df.tmp[1, "2015"] <- sum((df.clean[which(df.clean$year == "2015"), attack.type]))
+  
   df.tmp[1, "2016"] <- sum((df.clean[which(df.clean$year == "2016"), attack.type]))
   df.tmp[1, "2017"] <- sum((df.clean[which(df.clean$year == "2017"), attack.type]))
   df.tmp[1, "2018"] <- sum((df.clean[which(df.clean$year == "2018"), attack.type]))
@@ -164,7 +163,7 @@ year.trend <-function(attack.type, color.choice){
   df.tmp[1, "2021"] <- sum((df.clean[which(df.clean$year == "2021"), attack.type]))
   
   df.long <- df.tmp %>%
-    pivot_longer(1:9, names_to = "year", values_to = "count")
+    pivot_longer(1:6, names_to = "year", values_to = "count")
   ggplot(df.long, aes(x = year, y = count)) +
     geom_col(fill = color.choice) + labs(title =  attack.type) + ylim(0, 75)
 }
@@ -205,52 +204,52 @@ graph.attack.by.filter <- function(fill.choice){
   df.unk <- df.clean %>% as_tibble() %>% 
   mutate(Unknown = as.factor(if_else(Unknown == 1, "True", "False")))
 
-unk.graph <- ggplot(data = df.unk, aes(Unknown == "True", fill = fill.choice))+geom_bar() + ylim(0, 175) +theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Unknown")
+unk.graph <- ggplot(data = df.unk, aes(Unknown == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50) +theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Unknown")
 ##############################################################
 df.hack <- df.clean %>% as_tibble() %>% 
   mutate(Hack = as.factor(if_else(Hack == 1, "True", "False")))
 
-hack.graph <- ggplot(data = df.hack, aes(Hack == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme( axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Hack")
+hack.graph <- ggplot(data = df.hack, aes(Hack == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme( axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Hack")
 ###############################################################
 df.data <- df.clean %>% as_tibble() %>% 
   mutate(Data_Breach = as.factor(if_else(Data_Breach == 1, "True", "False")))
 
-data.graph <- ggplot(data = df.data, aes(Data_Breach == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank())+ xlab("Data Breach")
+data.graph <- ggplot(data = df.data, aes(Data_Breach == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank())+ xlab("Data Breach")
 ################################################################
 df.ran <- df.clean %>% as_tibble() %>% 
   mutate(Ransomware = as.factor(if_else(Ransomware == 1, "True", "False")))
 
-ran.graph <- ggplot(data = df.ran, aes(Ransomware == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank()) + xlab("Ransomware")
+ran.graph <- ggplot(data = df.ran, aes(Ransomware == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank()) + xlab("Ransomware")
 ################################################################
 df.phish <- df.clean %>% as_tibble() %>% 
   mutate(Phishing = as.factor(if_else(Phishing == 1, "True", "False")))
 
-phish.graph <- ggplot(data = df.phish, aes(Phishing == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Phishing") 
+phish.graph <- ggplot(data = df.phish, aes(Phishing == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Phishing") 
 ################################################################
 df.tdos <- df.clean %>% as_tibble() %>% 
   mutate(TDoS = as.factor(if_else(TDoS == 1, "True", "False")))
 
-tdos.graph <- ggplot(data = df.tdos, aes(TDoS == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("TDoS")
+tdos.graph <- ggplot(data = df.tdos, aes(TDoS == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("TDoS")
 ################################################################
 df.mal <- df.clean %>% as_tibble() %>% 
   mutate(Malware = as.factor(if_else(Malware == 1, "True", "False")))
 
-mal.graph <- ggplot(data = df.mal, aes(Malware == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank()) + xlab("Malware")
+mal.graph <- ggplot(data = df.mal, aes(Malware == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank()) + xlab("Malware")
 #################################################################
 df.ddos <- df.clean %>% as_tibble() %>% 
   mutate(DDoS = as.factor(if_else(DDoS == 1, "True", "False")))
 
-ddos.graph <- ggplot(data = df.ddos, aes(DDoS == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("DDoS")
+ddos.graph <- ggplot(data = df.ddos, aes(DDoS == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("DDoS")
 ################################################################
 df.other <- df.clean %>% as_tibble() %>% 
   mutate(Other = as.factor(if_else(Other == 1, "True", "False")))
 
-other.graph <- ggplot(data = df.other, aes(Other == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())+ xlab("Other") 
+other.graph <- ggplot(data = df.other, aes(Other == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())+ xlab("Other") 
 ################################################################
 df.serv <- df.clean %>% as_tibble() %>% 
   mutate(Server_Shutdown = as.factor(if_else(Server_Shutdown == 1, "True", "False")))
 
-serv.graph <- ggplot(data = df.serv, aes(Server_Shutdown == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme(axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())  + xlab("Server_Shutdown")
+serv.graph <- ggplot(data = df.serv, aes(Server_Shutdown == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())  + xlab("Server_Shutdown")
 ################################################################
 
 
@@ -280,52 +279,52 @@ graph.attack.by.filter <- function(fill.choice){
   df.unk <- df.clean %>% as_tibble() %>% 
   mutate(Unknown = as.factor(if_else(Unknown == 1, "True", "False")))
 
-unk.graph <- ggplot(data = df.unk, aes(Unknown == "True", fill = fill.choice))+geom_bar() + ylim(0, 175) +theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Unknown")
+unk.graph <- ggplot(data = df.unk, aes(Unknown == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50) +theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Unknown")
 ##############################################################
 df.hack <- df.clean %>% as_tibble() %>% 
   mutate(Hack = as.factor(if_else(Hack == 1, "True", "False")))
 
-hack.graph <- ggplot(data = df.hack, aes(Hack == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme( axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Hack")
+hack.graph <- ggplot(data = df.hack, aes(Hack == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme( axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Hack")
 ###############################################################
 df.data <- df.clean %>% as_tibble() %>% 
   mutate(Data_Breach = as.factor(if_else(Data_Breach == 1, "True", "False")))
 
-data.graph <- ggplot(data = df.data, aes(Data_Breach == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank())+ xlab("Data Breach")
+data.graph <- ggplot(data = df.data, aes(Data_Breach == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank())+ xlab("Data Breach")
 ################################################################
 df.ran <- df.clean %>% as_tibble() %>% 
   mutate(Ransomware = as.factor(if_else(Ransomware == 1, "True", "False")))
 
-ran.graph <- ggplot(data = df.ran, aes(Ransomware == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank()) + xlab("Ransomware")
+ran.graph <- ggplot(data = df.ran, aes(Ransomware == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank()) + xlab("Ransomware")
 ################################################################
 df.phish <- df.clean %>% as_tibble() %>% 
   mutate(Phishing = as.factor(if_else(Phishing == 1, "True", "False")))
 
-phish.graph <- ggplot(data = df.phish, aes(Phishing == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Phishing") 
+phish.graph <- ggplot(data = df.phish, aes(Phishing == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("Phishing") 
 ################################################################
 df.tdos <- df.clean %>% as_tibble() %>% 
   mutate(TDoS = as.factor(if_else(TDoS == 1, "True", "False")))
 
-tdos.graph <- ggplot(data = df.tdos, aes(TDoS == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("TDoS")
+tdos.graph <- ggplot(data = df.tdos, aes(TDoS == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("TDoS")
 ################################################################
 df.mal <- df.clean %>% as_tibble() %>% 
   mutate(Malware = as.factor(if_else(Malware == 1, "True", "False")))
 
-mal.graph <- ggplot(data = df.mal, aes(Malware == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank()) + xlab("Malware")
+mal.graph <- ggplot(data = df.mal, aes(Malware == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank()) + xlab("Malware")
 #################################################################
 df.ddos <- df.clean %>% as_tibble() %>% 
   mutate(DDoS = as.factor(if_else(DDoS == 1, "True", "False")))
 
-ddos.graph <- ggplot(data = df.ddos, aes(DDoS == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("DDoS")
+ddos.graph <- ggplot(data = df.ddos, aes(DDoS == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank()) + xlab("DDoS")
 ################################################################
 df.other <- df.clean %>% as_tibble() %>% 
   mutate(Other = as.factor(if_else(Other == 1, "True", "False")))
 
-other.graph <- ggplot(data = df.other, aes(Other == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())+ xlab("Other") 
+other.graph <- ggplot(data = df.other, aes(Other == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(legend.position="none", axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())+ xlab("Other") 
 ################################################################
 df.serv <- df.clean %>% as_tibble() %>% 
   mutate(Server_Shutdown = as.factor(if_else(Server_Shutdown == 1, "True", "False")))
 
-serv.graph <- ggplot(data = df.serv, aes(Server_Shutdown == "True", fill = fill.choice))+geom_bar() + ylim(0, 175)+theme(axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())  + xlab("Server_Shutdown")
+serv.graph <- ggplot(data = df.serv, aes(Server_Shutdown == "True", fill = fill.choice))+geom_bar(position = "dodge") + ylim(0, 50)+theme(axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank())  + xlab("Server_Shutdown")
 ################################################################
 
 
@@ -344,6 +343,76 @@ graph.attack.by.filter((df.clean$website_quality))
 df.clean <- df.temporary
 
 ```
+```{r}
+get.percent <- function(attack.type, sector){
+
+sum.type <- sum(df.clean$type == sector)
+
+sum.attack <- sum(df.clean[which(df.clean$type == sector), attack.type])
+percent.attack = sum.attack/sum.type;
+
+#sprintf("%f of % s attacks are % s", percent.attack, sector, attack.type )
+return(percent.attack)
+}
+```
+
+```{r}
+
+df.attack.count <- data.frame(matrix(ncol = 3, nrow = 18))
+x <- c("Attack", "Type", "Percent")
+colnames(df.attack.count)<- x
+
+df.attack.count[1, "Attack"] = "Data_Breach"
+df.attack.count[2, "Attack"] = "DDoS"
+df.attack.count[3, "Attack"] = "Hack"
+df.attack.count[4, "Attack"] = "Malware"
+df.attack.count[5, "Attack"] = "Other"
+df.attack.count[6, "Attack"] = "Phish"
+df.attack.count[7, "Attack"] = "Ransomware"
+df.attack.count[8, "Attack"] = "TDoS"
+df.attack.count[9, "Attack"] = "Unknown"
+df.attack.count[10, "Attack"] = "Data_Breach"
+df.attack.count[11, "Attack"] = "DDoS"
+df.attack.count[12, "Attack"] = "Hack"
+df.attack.count[13, "Attack"] = "Malware"
+df.attack.count[14, "Attack"] = "Other"
+df.attack.count[15, "Attack"] = "Phish"
+df.attack.count[16, "Attack"] = "Ransomware"
+df.attack.count[17, "Attack"] = "TDoS"
+df.attack.count[18, "Attack"] = "Unknown"
+df.attack.count[1:9, "Type"] = "Education"
+df.attack.count[10:18, "Type"] = "Safety"
+
+df.attack.count[1, "Percent"] = get.percent("Data_Breach", "Education")
+df.attack.count[2, "Percent"] = get.percent("DDoS", "Education")
+df.attack.count[3, "Percent"] = get.percent("Hack", "Education")
+df.attack.count[4, "Percent"] = get.percent("Malware", "Education")
+df.attack.count[5, "Percent"] = get.percent("Other", "Education")
+df.attack.count[6, "Percent"] = get.percent("Phishing", "Education")
+df.attack.count[7, "Percent"] = get.percent("Ransomware", "Education")
+df.attack.count[8, "Percent"] = get.percent("TDoS", "Education")
+df.attack.count[9, "Percent"] = get.percent("Unknown", "Education")
+
+
+df.attack.count[10, "Percent"] = get.percent("Data_Breach", "Safety")
+df.attack.count[11, "Percent"] = get.percent("DDoS", "Safety")
+df.attack.count[12, "Percent"] = get.percent("Hack", "Safety")
+df.attack.count[13, "Percent"] = get.percent("Malware", "Safety")
+df.attack.count[14, "Percent"] = get.percent("Other", "Safety")
+df.attack.count[15, "Percent"] = get.percent("Phishing", "Safety")
+df.attack.count[16, "Percent"] = get.percent("Ransomware", "Safety")
+df.attack.count[17, "Percent"] = get.percent("TDoS", "Safety")
+df.attack.count[18, "Percent"] = get.percent("Unknown", "Safety")
+
+```
+
+```{r}
+head(df.attack.count)
+```
+
+```{r}
+
+ggplot(df.attack.count, aes(x = Attack, y = Percent, fill = Type)) + geom_bar(stat = "identity", position = "dodge")
 ```
 
 
