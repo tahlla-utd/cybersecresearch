@@ -1,0 +1,70 @@
+---
+title: "Cyber Research"
+output: html_document
+---
+
+```{r}
+if (!require("pacman")) install.packages("pacman")
+if (!require("pacman")) install.packages("pacman")
+p_load(dplyr, plyr, ggplot2, data.table, tidyr, ggrepel,
+       fastDummies, R.utils, beepr, mltools, caret, FactoMineR)
+p_load(ggpubr)
+theme_set(theme_pubr(border = TRUE))
+`%+%` <- function(x,y){paste0(x,y)} # Concatenate strings
+`%gic%` <- function(x,y){grepl(x, y, ignore.case = TRUE)} # Pattern in a string
+```
+
+```{r}
+df.edu.safety = read.csv("https://raw.githubusercontent.com/tahlla-utd/cybersecresearch/main/CyberResearch.txt", 
+                         header = TRUE, sep = ';')
+```
+
+```{r}
+#identifying the rows with NAs
+# rownames(df.edu.safety)[apply(df.edu.safety, 2, anyNA)]
+#removing all observations with NAs
+df.clean <- df.edu.safety %>% na.omit()
+d <- df.clean %>% data.table()
+```
+
+```{r}
+all.attack.types <- strsplit(d$attack_type, split = ",") %>% unlist()
+
+d[,attack_type_clean:='Other']
+d['DoS' %gic% attack_type, attack_type_clean:='DoS']
+d['Ransomwa' %gic% attack_type, attack_type_clean:='Ransomware']
+d['Breach' %gic% attack_type, attack_type_clean:='Breach']
+d['Phishing' %gic% attack_type, attack_type_clean:='Phishing']
+d['Hack' %gic% attack_type, attack_type_clean:='Hacking']
+
+d[,attack_type := attack_type_clean]
+d[,attack_type_clean := NULL]
+```
+# PCA Part
+## Performa one-hot encoding
+```{r}
+d <- d[,.(type, state, attack_type,
+          type_of_certificate, website_quality..high.medium.low., 
+          year, month
+          )]
+
+dummy <- dummyVars(" ~ .", data=d)
+d.for.pca <- data.frame(predict(dummy, newdata = d)) 
+d.for.pca <- scale(d.for.pca)
+d <- d.for.pca
+```
+
+
+```{r}
+d.pca <- prcomp(d)
+d.pca <- d.pca$x[,1:2] %>% data.table()
+d.pca[,state := df.clean$state]
+```
+
+```{r}
+ggplot(data = d.pca,
+       aes(x = PC1, y = PC2)) + 
+       geom_point(shape = 4, alpha = .4, col = "navy") +
+       geom_text_repel(data=subset(d.pca, PC1 < -5), col = "red",
+                       aes(PC1,PC2,label=state))
+```
